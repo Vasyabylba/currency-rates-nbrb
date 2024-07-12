@@ -51,7 +51,7 @@ public class CurrencyServiceImpl implements CurrencyService {
     }
 
     private NotFoundException generateNotFoundException(String curId, LocalDate date) {
-        return new NotFoundException(String.format("Currency rate with id = %s not found as of date %s ", curId, date)
+        return new NotFoundException(String.format("Currency rate with id = %s not found as of date %s", curId, date)
         );
     }
 }
