@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  title: Currency Rates
+  description: |-
+    This is a Currency Rates Server based on the OpenAPI 3.0 specification.
+    
+    Some useful links:
+    - [The Currency Rates repository](https://github.com/vasyabylba/currency-rates-nbrb)
+    - [The source API definition for the Currency Rates](https://github.com/vasyabylba/currency-rates-nbrb/blob/master/src/main/resources/static/api-docs.yaml)
+  contact:
+    email: vasyabylba@gmail.com
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: rates
+    description: Operations about rates
+paths:
+  /rates:
+    post:
+      tags:
+        - rates
+      summary: Save currency rates information
+      description: Returns a response indicating the correctness of loading data into the database for the specified date
+      operationId: fetchRates
+      parameters:
+        - name: date
+          in: query
+          description: The date on which the rates will be saved to the database. If not specified, the rates for today will be saved.
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2024-01-01'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessfulResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '404':
+          description: Rates not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+  /rates/{curId}:
+    get:
+      tags:
+        - rates
+      summary: Get currency rate by code
+      description: Returns information about the currency rate by code for the specified day
+      operationId: getRate
+      parameters:
+        - name: curId
+          in: path
+          description: Currency code
+          required: true
+          schema:
+            type: string
+            example: 431
+        - name: date
+          in: query
+          description: The date for which the rate is requested. If not specified, the rate for today is returned.
+          required: false
+          schema:
+            type: string
+            format: date
+            example: '2024-01-01'
+        - name: curmode
+          in: query
+          description: 'Currency code format : 0 - internal currency code, 1 - three-digit numeric currency 
+          code according to ISO 4217 standard, 2 - three-digit alphabetic currency code (ISO 4217).'
+          required: false
+          schema:
+            type: number
+            minimum: 0
+            exclusiveMinimum: false
+            maximum: 2
+            exclusiveMaximum: false
+            default: 0
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateResponse'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+        '404':
+          description: Currency rate not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundResponse'
+components:
+  schemas:
+    SuccessfulResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Rates have been saved in the database"
+    RateResponse:
+      type: object
+      properties:
+        Cur_ID:
+          type: number
+          format: int32
+          example: 431
+        Date:
+          type: string
+          format: date
+          example: '2024-01-01'
+        Cur_Abbreviation:
+          type: string
+          example: 'USD'
+        Cur_Scale:
+          type: string
+          example: '1'
+        Cur_Name:
+          type: string
+          example: 'Доллар США'
+        Cur_OfficialRate:
+          type: string
+          example: '3.2077'
+    NotFoundResponse:
+      type: object
+      properties:
+        status:
+          type: number
+          format: int32
+          example: 404
+        title:
+          type: string
+          example: 'Not Found'
+        error:
+          type: string
+          example: "Rates not found as of date 2024-01-01"
+    BadRequestResponse:
+      type: object
+      properties:
+        status:
+          type: number
+          format: int32
+          example: 400
+        title:
+          type: string
+          example: 'One or more validation errors occurred.'
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              param:
+                type: string
+                example: "date"
+              message:
+                type: string
+                example: "The value '2024-40-01' is not valid."
