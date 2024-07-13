@@ -2,8 +2,8 @@ package by.vasyabylba.currencyrates.service.impl;
 
 import by.vasyabylba.currencyrates.exception.NotFoundException;
 import by.vasyabylba.currencyrates.exception.ValidationException;
-import by.vasyabylba.currencyrates.externalapi.client.NbrbExratesClient;
-import by.vasyabylba.currencyrates.externalapi.dto.CurrencyNbrbResponse;
+import by.vasyabylba.currencyrates.client.NbrbExratesClient;
+import by.vasyabylba.currencyrates.model.dto.client.CurrencyNbrbResponse;
 import by.vasyabylba.currencyrates.mapper.CurrencyMapper;
 import by.vasyabylba.currencyrates.model.entity.Currency;
 import by.vasyabylba.currencyrates.repository.CurrencyRepository;

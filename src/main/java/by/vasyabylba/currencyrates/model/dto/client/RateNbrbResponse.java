@@ -1,4 +1,4 @@
-package by.vasyabylba.currencyrates.externalapi.dto;
+package by.vasyabylba.currencyrates.model.dto.client;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
