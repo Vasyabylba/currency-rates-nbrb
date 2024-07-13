@@ -100,7 +100,7 @@ public class RateControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(content().json(objectMapper.writeValueAsString(response)));
 
-        verify(rateService, times(0)).fetchRates(any(LocalDate.class));
+        verify(rateService, never()).fetchRates(any(LocalDate.class));
     }
 
     @SneakyThrows
@@ -211,7 +211,7 @@ public class RateControllerTest {
                 .andExpect(jsonPath("$.title")
                         .value("One or more validation errors occurred."));
 
-        verify(rateService, times(0)).fetchRates(any(LocalDate.class));
+        verify(rateService, never()).fetchRates(any(LocalDate.class));
     }
 
     static Stream<Arguments> getRate_BadRequest() {

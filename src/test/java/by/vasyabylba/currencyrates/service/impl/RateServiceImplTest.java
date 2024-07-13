@@ -1,8 +1,8 @@
 package by.vasyabylba.currencyrates.service.impl;
 
 import by.vasyabylba.currencyrates.exception.NotFoundException;
-import by.vasyabylba.currencyrates.externalapi.client.NbrbExratesClient;
-import by.vasyabylba.currencyrates.externalapi.dto.RateNbrbResponse;
+import by.vasyabylba.currencyrates.client.NbrbExratesClient;
+import by.vasyabylba.currencyrates.model.dto.client.RateNbrbResponse;
 import by.vasyabylba.currencyrates.mapper.RateMapper;
 import by.vasyabylba.currencyrates.model.dto.RateResponse;
 import by.vasyabylba.currencyrates.model.dto.SuccessfulResponse;
@@ -66,8 +66,8 @@ public class RateServiceImplTest {
                 () -> rateService.fetchRates(LocalDate.of(2024, 1, 1)));
 
         verify(nbrbExratesClient, times(1)).getRates(any(LocalDate.class));
-        verify(currencyService, times(0)).updateCurrencies(anySet());
-        verify(rateRepository, times(0)).saveAll(anyList());
+        verify(currencyService, never()).updateCurrencies(anySet());
+        verify(rateRepository, never()).saveAll(anyList());
         assertThat(exception).hasMessageStartingWith("Rates not found as of date");
     }
 
@@ -103,7 +103,7 @@ public class RateServiceImplTest {
         verify(currencyService, times(1))
                 .getCurrency(any(String.class), any(LocalDate.class), anyInt());
         verify(rateRepository, times(1)).findById(any(RateId.class));
-        verify(rateMapper, times(0)).toRateResponse(any(Rate.class), any(Currency.class));
+        verify(rateMapper, never()).toRateResponse(any(Rate.class), any(Currency.class));
         assertThat(exception)
                 .hasMessageContaining("Currency rate with id =")
                 .hasMessageContaining("not found as of date");

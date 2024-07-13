@@ -1,6 +1,6 @@
 package by.vasyabylba.currencyrates.mapper;
 
-import by.vasyabylba.currencyrates.externalapi.dto.RateNbrbResponse;
+import by.vasyabylba.currencyrates.model.dto.client.RateNbrbResponse;
 import by.vasyabylba.currencyrates.model.dto.RateResponse;
 import by.vasyabylba.currencyrates.model.entity.Currency;
 import by.vasyabylba.currencyrates.model.entity.Rate;

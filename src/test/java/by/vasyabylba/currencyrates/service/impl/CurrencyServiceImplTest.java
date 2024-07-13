@@ -2,8 +2,8 @@ package by.vasyabylba.currencyrates.service.impl;
 
 import by.vasyabylba.currencyrates.exception.NotFoundException;
 import by.vasyabylba.currencyrates.exception.ValidationException;
-import by.vasyabylba.currencyrates.externalapi.client.NbrbExratesClient;
-import by.vasyabylba.currencyrates.externalapi.dto.CurrencyNbrbResponse;
+import by.vasyabylba.currencyrates.client.NbrbExratesClient;
+import by.vasyabylba.currencyrates.model.dto.client.CurrencyNbrbResponse;
 import by.vasyabylba.currencyrates.mapper.CurrencyMapper;
 import by.vasyabylba.currencyrates.model.entity.Currency;
 import by.vasyabylba.currencyrates.repository.CurrencyRepository;
@@ -49,7 +49,7 @@ public class CurrencyServiceImplTest {
     }
 
     @Test
-    void getCurrencyByCodeAndDate_Successful() {
+    void getCurrencyByCodeAndDate_Success() {
         String curId = "840";
         LocalDate date = LocalDate.of(2024, 1, 1);
         int curMode = 1;
@@ -84,7 +84,7 @@ public class CurrencyServiceImplTest {
     }
 
     @Test
-    void getCurrencyByAbbreviationAndDate_Successful() {
+    void getCurrencyByAbbreviationAndDate_Success() {
         String curId = "USD";
         LocalDate date = LocalDate.of(2024, 1, 1);
         int curMode = 2;
@@ -121,7 +121,7 @@ public class CurrencyServiceImplTest {
     }
 
     @Test
-    void getCurrencyByCurIdAndDate_Successful() {
+    void getCurrencyByCurIdAndDate_Success() {
         String curId = "431";
         LocalDate date = LocalDate.of(2024, 1, 1);
         int curMode = 0;
@@ -164,7 +164,7 @@ public class CurrencyServiceImplTest {
         ValidationException exception = assertThrows(ValidationException.class, () ->
                 currencyService.getCurrency(curId, date, curMode));
 
-        verify(currencyRepository, times(0))
+        verify(currencyRepository, never())
                 .findByCurIdAndDate(anyInt(), any(LocalDate.class));
         assertThat(exception)
                 .hasMessageContaining(String.format("The value '%s' is not valid.", curId));

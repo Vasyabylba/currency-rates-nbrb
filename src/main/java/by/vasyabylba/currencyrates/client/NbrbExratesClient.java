@@ -1,7 +1,7 @@
-package by.vasyabylba.currencyrates.externalapi.client;
+package by.vasyabylba.currencyrates.client;
 
-import by.vasyabylba.currencyrates.externalapi.dto.CurrencyNbrbResponse;
-import by.vasyabylba.currencyrates.externalapi.dto.RateNbrbResponse;
+import by.vasyabylba.currencyrates.model.dto.client.CurrencyNbrbResponse;
+import by.vasyabylba.currencyrates.model.dto.client.RateNbrbResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
