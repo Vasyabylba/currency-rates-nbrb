@@ -1,6 +1,6 @@
 package by.vasyabylba.currencyrates.util;
 
-import by.vasyabylba.currencyrates.externalapi.dto.CurrencyNbrbResponse;
+import by.vasyabylba.currencyrates.model.dto.client.CurrencyNbrbResponse;
 import by.vasyabylba.currencyrates.model.entity.Currency;
 import lombok.experimental.UtilityClass;
 
