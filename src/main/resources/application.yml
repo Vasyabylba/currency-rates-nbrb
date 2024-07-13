@@ -19,3 +19,9 @@ spring:
 
 external_api:
   url: https://api.nbrb.by
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    url: /api-docs.yaml
