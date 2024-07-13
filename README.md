@@ -2,31 +2,31 @@
 
 ## Description
 
-Service for obtaining and displaying currency exchange rates from the NB RB website
+Service for obtaining and displaying currency rates from website of the National Bank of the Republic of Belarus
 (API of the national bank: https://www.nbrb.by/apihelp/exrates).
 
 ## Technical stack
 
 * Java 21
 * Spring Boot
-* Spring Data JPA
 * Spring Web MVC
 * Spring Cloud OpenFeign
-* Spring Boot Test
+* Spring Data JPA
 * H2 Database
+* Spring Boot Test
 * JUnit 5
 * Swagger (OpenAPI 3.0)
 
 ## Install
 
 <ul>
-<li><b>Clone the repository:</b></li>
+<li>Clone the repository:</li>
 
 ```bash
 git clone https://github.com/vasyabylba/currency-rates-nbrb.git
 cd currency-rates-nbrb
 ```
-<li><b>Build and run the project:</b></li>
+<li>Build and run the project:</li>
 <ul>
   <li>Windows</li>
 
@@ -48,7 +48,7 @@ mvnw.cmd spring-boot:run
 
 ### API
 
-API specification (Swagger) is available at:  http://localhost:8080/swagger-ui/index.html
+API specification (OpenAPI 3.0) is available at:  http://localhost:8080/swagger-ui/index.html
 
 | Method | URI                     | Description                     |
 |--------|-------------------------|---------------------------------|
