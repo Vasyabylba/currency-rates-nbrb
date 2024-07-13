@@ -23,7 +23,7 @@ Service for obtaining and displaying currency exchange rates from the NB RB webs
 <li><b>Clone the repository:</b></li>
 
 ```bash
-git https://github.com/Vasyabylba/currency-rates-nbrb.git
+git clone https://github.com/vasyabylba/currency-rates-nbrb.git
 cd currency-rates-nbrb
 ```
 <li><b>Build and run the project:</b></li>
